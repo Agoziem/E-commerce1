@@ -153,7 +153,7 @@ AWS_LOCATION = 'static'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "assets"),]
 STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
 STATICFILES_STORAGE= 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE='OKFSsite.storages.MediaStore'
+DEFAULT_FILE_STORAGE='serahssite.storages.MediaStore'
 
 EMAIL_BACKEND='sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = config('SENDGRID_API_KEY', default='')
