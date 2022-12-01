@@ -135,12 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
-STATICFILES_DIRS= [os.path.join(BASE_DIR, "assets"),]
 
-MEDIA_URL= '/media/'
-MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
@@ -154,6 +149,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "assets"),]
 STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
 STATICFILES_STORAGE= 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE='serahssite.storages.MediaStore'
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+# STATICFILES_DIRS= [os.path.join(BASE_DIR, "assets"),]
+
+# MEDIA_URL= '/media/'
+# MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 EMAIL_BACKEND='sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = config('SENDGRID_API_KEY', default='')
