@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+<section id="Hero mt-5 mb-4">
+    <img src="{% static 'img/Style bubbles hero 2.svg' %}" class="hero-bubbles-2 img-fluid d-none" alt="">
+    <img src="{% static 'img/Style bubbles hero 1.svg' %}" class="hero-bubbles-1 img-fluid" alt="">
+
+    <div class="container">
+        <div class="d-flex justify-content-center align-items-center mt-4">
+            <h2 class="text-center px-2 me-1">Welcome to Bookstore
+                <a href="#Bookstore" class=" text-decoration-none" style="color: #181C35;"> <i
+                        class="fa-solid fa-chevron-down ms-2"></i></a>
+            </h2>
+
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="rulea"></div>
+            <div class="ruleb"></div>
+        </div>
+        <div class=" row justify-content-around">
+            <div class=" col-md ps-5">
+
+                <div class="h1 mt-4 mt-md-2" style="color:#F8A12D;">Trending Book <br>
+                    <span class="Display_text" style="color: #181C35;">{{ newestbook.title}}</span>
+                </div>
+                <p class="Display_text1 mt-2 mb-4 px-2">“ Greater Opportunities are hidden in a Book”
+                </p>
+                <div class="d-flex align-items-center">
+                    <p class="me-3"> Current Price </p>
+                    <h1 style="margin-bottom: 0rem;"> ${{ newestbook.main_Price }} </h1>
+                </div>
+                <div>
+                    <div class="d-flex">
+                        <a style="cursor: pointer;" class="btn me-2 update-cart" data-action="add"
+                            data-product="{{ newestbook.id }}"> Add to Cart</a>
+                        <a href="{% url 'books:details' newestbook.id %}" class="btn-outline px-3">View Details</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md d-flex flex-column align-items-center align-items-md-end pe-5 mt-5 mt-md-2 ">
+                <img src="{{ newestbook.imageURL }}" alt="" class="img-fluid" style="width: 50%; max-width: 100%;">
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<!-- Books Category -->
+
+<section id="Bookstore" class=" px-2 ">
+    <div class="px-5 row align-items-center justify-content-between mb-5 py-2 pt-4 pt-md-4"
+        style="background-color: #fcf9f5;">
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="dropdown mb-3">
+                <button class="dropbtn shadow-sm">Sort by Category <i class="bi bi-caret-down-fill ms-2"></i></button>
+                <div class="dropdown-content">
+                    <a style="cursor: pointer;" onclick="filterSelection('All')">All</a>
+                    {% for cat in category %}
+                    <a style="cursor: pointer;" onclick="filterSelection('{{ cat.cart }}')">{{ cat.cart }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 d-none d-md-flex">
+            <h1 class="mb-0 "> BOOKS IN STORE </h1>
+        </div>
+        <div class="col-md-3 d-flex justify-content-start ">
+            <!-- <div class="input-group mb-3" style="max-width: 300px;">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                    style="background-color: #F8A12D ;border: none;">
+                    <p style="color: white;"> Search </p>
+                </span>
+                <input style="background-color: #fcf9f5;" onkeyup="myFunction()" type="text" class="form-control"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                    placeholder="start typing to search for books">
+            </div> -->
+            <div class="search_container">
+                <div class="icon">
+                    <i class="search fa fa-search"></i>
+                </div>
+                <div class="input">
+                    <input id="myInput" type="text" placeholder="search for books " onkeyup="myFunction()" id="search">
+                    <i class="clear fa fa-times"></i>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!-- Books Catalog Section -->
+    <div id="bookcatalog" class="row px-5 ">
+        {% for book in books %}
+        <div class=" filterDiv {{ book.category }} col-md-6 col-lg-3">
+            <div class="card mb-5 mb-md-5 " style="width: 12rem; height: 17.5rem;box-shadow: 0px 3.7634px 49.865px #D9D9D9;border: none;
+            ">
+                <img src="{{ book.imageURL }} " alt="" style="width: 70%;position:absolute;top: -20px;left: -20px;">
+                <h6 style="position:absolute; bottom: 75px;left: 50%; transform: translateX(-35%);width: 100%;">{{ book.title }}</h6>
+                <div class="d-flex align-items-center" style="position:absolute; bottom: 20px;left: 0px;">
+                    <!-- #{{ book.price|floatformat:2 }}  -->
+                    <h2 class="mx-3">${{ book.main_Price|floatformat:0 }}</h2>
+                    <div>
+                        <div class="d-flex align-items-center">
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                            {% if not book.rating %}
+                            <p class="number-rating" data-rating="0" data-id="{{ book.id }}">0
+                            </p>
+                            {% else %}
+                            <p class="number-rating" data-rating="{{ book.rating|floatformat:1 }}"
+                                data-id="{{ book.id }}">{{ book.rating|floatformat:1 }}
+                            </p>
+                            {% endif %}
+                        </div>
+                        <ul class="ps-3 pe-1">
+                            <li>
+                                <p class="mb-2" style="font-size: 10px ; line-height: 1em;">Hard-Copy not Available</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex" style="position:absolute; bottom: 15px;left: 50%; transform: translateX(-50%);">
+                    <a class="btncard me-2 update-cart" data-action="add" data-product="{{ book.id }}"
+                        style="cursor: pointer;">Add to Cart</a>
+                    <a href="{% url 'books:details' book.id %}" class="btn-outline-card">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Added to Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{% static 'img/Check Mark 2.svg' %}" alt="" class="img-fluid ms-2">
+                you have Successfully added Product <span class="fw-bold"> "Python Programming " </span> to your Cart
+            </div>
+            <div class="modal-footer">
+                <a class="btn-outline" style="padding: 0 40px;cursor: pointer;" data-bs-dismiss="modal">continue
+                    Shopping</a>
+                <a href="{% url 'main:cart' %}" class="btn">Go to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/book.js' %}"></script>
+{% endblock %}

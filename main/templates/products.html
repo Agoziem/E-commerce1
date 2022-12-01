@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+{% if not order_exist %}
+<section>
+    <img src="{% static 'img/Style bubbles hero 1.svg' %}" class="hero-bubbles-3 img-fluid" alt="">
+    <div class="container mt-5">
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4 d-flex flex-column align-items-center">
+                <img src="{% static 'img/basket.svg' %}" alt="" style="width: 120px;">
+                <h4 class=" mt-4 text-center" style="color: rgba(14, 68, 110, 0.77);text-transform: uppercase;">No product Available</h4>
+                <p> you have not purchased any Product </p>
+                <a href="{% url 'books:Books' %}" class="btn mt-3 w-75">Start Shopping Now </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<section>
+    <img src="{% static 'img/Style bubbles hero 2.svg' %}" class="hero-bubbles-2 img-fluid d-none d-md-block;" alt="">
+    <img src="{% static 'img/Style bubbles hero 1.svg' %}" class="hero-bubbles-1 img-fluid d-none d-md-block;" alt="">
+    <h4 class="text-center mt-4">Your Products</h4>
+    <div class="d-flex justify-content-center  mb-4">
+        <div class="rulea"></div>
+        <div class="ruleb"></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-3 d-none d-md-block">
+            <!-- <div class="card text-center d-flex flex-column align-items-center p-2 py-3">
+                <div class="card_profile_img">
+                    <img class="card-img" src="{% static 'img/person 1.jpg' %}" alt="">
+                </div>
+
+                <h4 class="mt-3" style="font-size: 21px;">{{ order.customer.name }}</h4>
+                <div> - {{ request.user }} </div>
+                <p style="font-size: 1.2vw;">{{ order.customer.email }}</p>
+                <div class="d-flex mt-2">
+                    <p class="me-2">{{ number_of_Items }} products</p>
+                    <p class="me-2">5 <span><i class="fa fa-thumbs-up"></i></span></p>
+                </div>
+            </div> -->
+            <div class="card p-2 ">
+                <div class="d-flex justify-content-center px-2 pt-3 mb-3">
+                    <img src="{% static 'img/Serahs Logo 1.png' %}" alt="my Logo" width="98" height="43">
+                </div>
+                <div class="alert" id="feedback_form_alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <span id="feedback_form_alert_text"></span>
+                </div>
+                <div class="feedback_form_container mx-auto mb-5">
+                    <p class="text-center" style="font-size: 20px;font-weight:bold; color: #052640;">drop your
+                        feedback
+                    </p>
+                    <p class="text-center mb-2" style="font-size: 14px;font-weight:bold; color: #052640;">lets know
+                        how you
+                        feel about our product
+                    </p>
+                    <form id="feedbackform" class="form" style="width: 280px;font-weight: 600; color: #052640;">
+                    
+                        <div class="mb-3">
+                        <select id="form-select_id" class="form-select" aria-label="Default select example" name="name" required>
+                                <option selected disabled id="headingoption">Select the Book</option>
+                                {% for Order in order %}
+                                    {% for item in Order.orderitem_set.all %}
+                                    <option value="{{ item.product.id }}" >{{ item.product.title }}</option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Rating</label>
+                            <input type="number" step="0.1" min=1 max="5" name="rating" class="form-control" id="exampleFormControlInput1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                            <textarea required class="form-control" id="exampleFormControlTextarea1" rows="4"
+                                name="comment"></textarea>
+                        </div>
+                        <button value="submit" type="submit" class="btn w-100 shadow-sm">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 me-5">
+            <!-- <section>
+                <div class="container mt-5">
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-md-4 d-flex flex-column align-items-center">
+                            <img src="{% static 'img/basket.svg' %}" alt="" style="width: 120px;">
+                            <h4 class=" mt-4 text-center"
+                                style="color: rgba(14, 68, 110, 0.77);text-transform: uppercase;">No product yet</h4>
+                            <p>you have not purchased any product</p>
+                            <a href="{% url 'books:Books' %}" class="btn mt-3 w-75"> Shop Now </a>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            {% for Order in order %}
+            {% for item in Order.orderitem_set.all %}
+            <div id="product-review_card"
+                class="product_card p-4 d-lg-flex justify-content-between align-items-center mb-3">
+                <div class="ps-lg-3 d-flex d-lg-flex justify-content-center">
+                    <img src="{{ item.product.imageURL }}" alt="" class="mb-2">
+                </div>
+                <div class="ps-lg-5 d-lg-flex flex-column">
+                    <h4 class=" card-test mt-4 mt-md-0 text-center text-lg-start">
+                        {{ item.product.title }}
+                    </h4>
+                    <p class="small mb-2 text-center text-lg-start">{{ item.product.category }}</p>
+                    <p class="d-none d-md-block text-center text-lg-start">
+                        {{ item.product.short_description }}
+                    </p>
+                    <div class="row justify-content-between mt-3">
+                        <div class="col-6 col-md-3">
+
+                        </div>
+                    </div>
+                    <div class="d-flex d-md-flex justify-content-center  justify-content-lg-start  align-items-center ">
+                        <a href="{% url 'books:details' item.product.id %}" class="btn" style="font-size: 12px;"> View
+                            details</a>
+
+                        <p class="mb-0 ms-3" style="font-size: 17px;cursor: pointer;">
+                            <span  class="likebtn me-2" data-product="{{item.product.id}}"><i
+                                 id="btnicon{{item.product.id}}"   class="fa-regular fa-thumbs-up" ></i>
+                                </span>
+                                   <span id="num_of_likes{{item.product.id}}">{{ item.product.likes_count }}</span></p>
+                        <p class="mb-0 ms-3" style="font-size: 17px;cursor: pointer;"><span class="me-2"><i
+                             id="lovebtn" class="fa-regular fa-heart" data-product="{{item.product.id}}"></i></span>35
+                        </p>
+
+                        <div class="d-none d-lg-block p-2  px-3 mx-4"
+                            style="border: 2px solid #D9D9D9;border-radius: 12px;">
+                            <div href="#" style="font-size: 15px;font-weight: bold;color: grey "
+                                class=" text-decoration-none">{% if not item.product.rating %} no ratings yet {% else %} {{ item.product.rating|floatformat:1 }} Rating {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" d-block d-lg-none p-2 mt-3 mx-4 text-center"
+                        style="border: 2px solid #D9D9D9;border-radius: 12px;">
+                        <div href="#" style="color: grey; font-size: 15px;font-weight: bold; "
+                            class=" text-decoration-none">
+                            {% if not item.product.rating %} no ratings yet {% else %} {{ item.product.rating|floatformat:1 }} Rating {% endif %}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
+</section>
+<script type="text/javascript">
+var personreviewing = '{{ Order.customer.name }}'
+var emailreviewing = '{{ Order.customer.email }}'
+var orderid = '{{ Order.customer.id }}'
+let likebtn = document.getElementsByClassName('likebtn');
+let lovebtn = document.getElementById('lovebtn');
+//  var lovebookid = lovebtn.dataset.product;
+
+ for (i = 0; i < likebtn.length; i++) {
+ likebtn[i].addEventListener('click',likepost)
+    function likepost(e){
+        var likebookid = this.dataset.product;
+        let likeicon = document.querySelector(`#btnicon${likebookid}`);
+        console.log(`#btnicon${likebookid}`)
+        var url = '/main/like/'
+        var userFormData = {
+            'Book_id': likebookid,
+            'name': personreviewing,
+        }
+
+        fetch(url, {
+        	method:'POST',
+        	headers:{
+        		'Content-Type':'application/json',
+        		'X-CSRFToken':csrftoken,
+        	},
+        	body:JSON.stringify({'form':userFormData}),
+
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data["check"])
+            let number_of_likes = document.getElementById(`num_of_likes${likebookid}`)
+            if(data["check"]==1){
+                likeicon.classList.remove("fa-regular")
+                likeicon.classList.add("fa-solid")
+            }
+            else if(data["check"]==0){
+                likeicon.classList.add("fa-regular")
+                likeicon.classList.remove("fa-solid")
+            }
+            else {
+                alert("you need to login")
+            }
+            number_of_likes.innerHTML=data["likes"]
+        	})
+    }
+
+ }
+
+
+
+   
+
+    var form = document.getElementById('feedbackform');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        submitFormData()
+    })
+
+    function submitFormData(productid) {
+        var userFormData = {
+            'productid': null,
+            'name': personreviewing,
+            'email': emailreviewing,
+            "rating": null,
+            "comment": null,
+        }
+        userFormData.productid = document.getElementById('form-select_id').value
+        userFormData.comment = form.comment.value
+        userFormData.rating = form.rating.value
+        console.log(userFormData)
+
+        var url = "/main/review_item/"
+
+        fetch(url, {
+        	method:'POST',
+        	headers:{
+        		'Content-Type':'application/json',
+        		'X-CSRFToken':csrftoken,
+        	}, 
+        	body:JSON.stringify({'form':userFormData}),
+
+        })
+        .then((response) => response.json())
+        .then((data) => {
+        	console.log('Success:', data);
+            form.name.value="";  
+            form.comment.value="";
+            form.rating.value='';
+            document.getElementById('feedback_form_alert').style.display = "block"
+            document.getElementById('feedback_form_alert').style.opacity = "1"
+            document.getElementById('feedback_form_alert_text').innerHTML = data
+        	})
+    }
+
+    var close = document.getElementsByClassName("closebtn");
+      var i;
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+          var div = this.parentElement;
+          div.style.opacity = "0";
+          setTimeout(function () { div.style.display = "none"; }, 600);
+        }
+      }
+</script>
+{% endif %}
+{% endblock %}

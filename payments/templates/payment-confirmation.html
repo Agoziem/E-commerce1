@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+<section>
+    <div class="row justify-content-center align-items-center px-4 mt-5">
+        <div class="col-md-5">
+            <div class="d-flex justify-content-center align-items-center">
+                <h2 class=" mb-0"> Payment Successful</h2>
+                <img src="{% static 'img/Check Mark 2.svg' %}" alt="" class="img-fluid ms-2">
+            </div>
+            <p class="text-center mt-3">your Transaction was Successful We have Successfully sent a Link to your email
+                address {{ order.customer.email}} , click on the link to download the Ebook</p>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-10 col-lg-10  d-flex justify-content-center">
+                    <div class="box-element2">
+                        {% if order.get_cart_items == 1 %}
+                        <h4>Product Purchased </h3>
+                        {% else %}
+                        <h4>Products Purchased </h3>
+                        {% endif %}
+                            <hr>
+                            {% for item in items %}
+                            <div class="cart-row">
+                                <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                                <div style="flex:2">
+                                    <p>{{item.product.title}}</p>
+                                </div>
+                                <div style="flex:1">
+                                    <p>#{{ item.get_total }}</p>
+                                </div>
+                                <div style="flex:1;margin-left: 20px;">
+                                    <p>x{{item.quantity}}</p>
+                                </div>
+                                <div style="flex:1;margin-left: 20px;">
+                                    <a href="{{item.product.Ebook.url}}" class="text-decoration-none" style="color:#052640" download><i class="fa-solid fa-download h4"></i></a>
+                                    <p>Password : {{ item.product.Password }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <h5><span style="color:#F8A12D;margin-left: 10px;"> Items:</span> {{order.get_cart_items}}
+                            </h5>
+                            <h5><span style="color:#F8A12D;margin-left: 10px;"> Total:</span>
+                                #{{order.get_cart_total|floatformat:2}}</h5>
+                    </div>
+                </div>
+
+                {% if user.is_authenticated %}
+                <div class="d-flex justify-content-center mt-2">
+                    <img src="{% static 'img/back arrow.svg' %}" alt="" class="me-2">
+                    <a href="{% url 'home' %}" class="btn btn-outline text-light">
+                        home page</a>
+                </div>
+                {% else %}
+                <div class="d-flex justify-content-center mt-2">
+                    <a href="{% url 'Accounts:sign-up' %}" class="btn">Sign-up</a>
+                    <a href="{% url 'Accounts:login' %}" class="btn-outline">Log in</a>
+                </div>
+                {% endif %}
+                
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+{% endblock %}

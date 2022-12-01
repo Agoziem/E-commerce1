@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+
+<!--
+<section>
+    <img src="{% static 'img/Style bubbles hero 1.svg' %}" class="hero-bubbles-3 img-fluid" alt="">
+    <div class="container mt-5">
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4 d-flex flex-column align-items-center">
+                <img src="{% static 'img/basket.svg' %}" alt="" style="width: 120px;">
+                <h4 class=" mt-4 text-center" style="color: rgba(14, 68, 110, 0.77);text-transform: uppercase;">Empty
+                    Cart</h4>
+                <p> no item have been added to your Cart</p>
+                <a href="{% url 'books:Books' %}" class="btn mt-3 w-75">Start Shopping Now </a>
+            </div>
+        </div>
+    </div>
+</section>
+ -->
+
+<div style="background-color: #faf8f5;">
+    <section class="py-4">
+        <!-- <img src="{% static 'img/Style bubbles hero 2.svg' %}" class="hero-bubbles-2 img-fluid" alt="">
+        <img src="{% static 'img/Style bubbles hero 1.svg' %}" class="hero-bubbles-1 img-fluid" alt=""> -->
+        <div class="container">
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-6">
+                    <div class="input-group mb-3  w-50">
+                        <span class="input-group-text" id="inputGroup-sizing-default"
+                            style="background-color: #F9AB46 ;border: none;">
+                            <p style="color:white;"> Search </p>
+                        </span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Main Product Card  -->
+                    <div id="card" class="card cart_card shadow-sm">
+                        <h5 class="px-4 py-3"> cart ({{number_of_Items}}) </h5>
+
+                        <!-- first Card  -->
+                        {% for item in items %}
+                        <div class="card-divider"></div>
+                        <div id="cart_card{{ item.product.id }}" class="row justify-content-center py-4">
+                            <div class="col col-md-3  d-flex align-items-center flex-column">
+                                <img src="{{ item.product.imageURL }}" alt="" style="width: min(80px,100%) ;">
+                                <div class="d-flex mt-3 align-items-center " style="color: #E30F0F;">
+                                    <i class="bi bi-trash-fill me-2"></i>
+                                    <a style="cursor: pointer;" class="text-decoration-none" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop">
+                                        <p style="color: #E30F0F;">Delete</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-none d-md-block d-lg-block">
+                                <h5>{{ item.product.title }}</h5>
+                                <p style="font-size: 13px; line-height:1.5em;">{{ item.product.short_description }}</p>
+                            </div>
+                            <div class="col col-md-3">
+                                <h5 style="text-decoration: line-through;">#{{ item.product.price}}</h5>
+                                <div class="d-flex align-items-center">
+                                    <h6 class="mb-0 me-2"># <span id="bookamount{{ item.product.id }}">{{ item.get_total }}</span></h6>
+                                    <div class="p-1 fw-bold"
+                                        style="padding: 20px; background-color:#FBCB91;color:white;border-radius: 20%;">
+                                        -{{ item.product.discount }}%
+                                    </div>
+                                </div>
+
+                                <!-- make sure the Id is dynamic so that it would change for a Specific Card -->
+
+
+                                {% if item.Digital %}
+                                <div>
+                                    <p>Available in Soft Copy only</p>
+                                </div>
+                                {% else %}
+                                <div class="d-flex align-items-center mt-3">
+                                    <div id="subbtn{{ item.product.id }}"
+                                        class="update-cart p-2  fw-bold d-flex align-items-center" data-action="remove"
+                                        data-product="{{ item.product.id }}"
+                                        style="width:25px;height:25px; background-color:#FBCB91;color:white;border-radius: 20%;cursor:pointer;">
+                                        -
+                                    </div>
+                                    <h6 id="productamount{{ item.product.id }}" class="mb-0 mx-3">{{ item.quantity }}
+                                    </h6>
+                                    <div id="addbtn{{ item.product.id }}"
+                                        class="update-cart p-2 fw-bold d-flex align-items-center" data-action="add"
+                                        data-product="{{ item.product.id }}"
+                                        style="width:25px;height:25px; background-color:#F9AB46;color:white;border-radius: 20%;cursor:pointer;">
+                                        +
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <a href="{% url 'books:details' item.product.id %}" class="btn px-3 py-1 py-md-2 mt-2"
+                                    style="font-size: 12px;"> View details</a>
+
+                            </div>
+                        </div>
+                        <!-- modal for delete item  -->
+
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">confirm delete</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <i class="fa-solid fa-triangle-exclamation text-warning h3 me-2"></i>
+                                        are you want to delete item <span class="fw-bold"> "Python Programming " </span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn-outline" style="padding: 0 40px;cursor: pointer;"
+                                            data-bs-dismiss="modal">Cancel </a>
+                                        <a style="cursor: pointer;"  class="delete_item" data-action="delete"
+                                            data-product="{{ item.product.id }}">Delete Item</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mt-4"
+                        style="width: 100%;background-color: #fff; border: none;color: rgba(14, 68, 110, 0.77); ">
+                        <h5 class="px-5 pt-3" style="text-transform:uppercase;">Cart Summary</h5>
+                        <div class="card-divider"></div>
+                        <div class="d-flex align-items-center justify-content-between px-5 py-2">
+                            <p class="me-5"> Check Out </p>
+                            <h5 class="mb-0" id="get_cart_items">{{ order.get_cart_items }} items </h5>
+                        </div>
+                        <div class="px-5 py-2 mb-4">
+                            <a href="{% url 'payments:check-out' %}" class="btn w-100" id="get_cart_total"> Check Out
+                                (#{{ order.get_cart_total }})</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="{% static 'js/cart.js' %}"></script>
+
+{% endblock %}

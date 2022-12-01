@@ -1,0 +1,26 @@
+.card-divider{
+    width: 100%;
+    height: 0px;
+    background-color: #fcf9f5;
+    border: 1.5px solid #fcf9f5;
+}
+
+.cart_card{
+    width: 100%; 
+    background-color: #fff; 
+    border: none; 
+    color: rgba(14, 68, 110, 0.77);
+    margin: 0 auto;
+}
+@media (max-width:768px) {
+    .cart_card{
+    max-width: 300px;
+    margin: 0 auto;
+    }
+}
+
+.hero-bubbles-3{
+ position: absolute;
+ top: 20%;
+ left: 10%;
+}

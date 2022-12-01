@@ -1,0 +1,108 @@
+.product_card{
+    max-width: 630px;
+    border: 1.9px solid #D9D9D9;
+    border-radius: 20px; 
+    font-size: 1.2vw;
+    margin: 0 auto;
+}
+
+.product_card p{
+    font-size: 13px;
+    line-height: 1.2em;
+}
+
+.product_card h4{
+    font-size: 21px;
+}
+.product_card img{
+    max-width: 120px ;
+}
+
+.card_profile_img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #F8A12D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:768px) {
+    .product_card{
+        width: 280px;
+    }
+}
+@media (max-width:992px) {
+    .product_card{
+        width: 300px;
+    }
+}
+
+
+.card-img{
+    width:92px;
+    height: 92px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+}
+.alert {
+    padding: 20px;
+    background-color: rgba(0, 153, 0, 0.575);
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    width: 295px;
+    display: none;
+    /* 600ms to fade out */
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
+/* breakpoints */
+/* 
+@media (max-width:576px) {
+    .product-card{
+        width: 280px;
+    }
+} */
+
+/* @media (max-width:768px) {
+    .product-card{
+        width: 280px;
+    }
+}
+@media (max-width:992px) {
+    .product-card{
+        width: 300px;
+    }
+} */
+
+/* @media (max-width:1200px) {
+    .product-card{
+        width: 300px;
+    }
+}
+@media (max-width:1400px) {
+    .product-card{
+        width: 300px;
+    }
+} */
+
+

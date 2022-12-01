@@ -1,0 +1,198 @@
+/* Style The Dropdown Button */
+.dropbtn {
+    background-color: #F8A12D;
+    color: white;
+    padding: 10px 25px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+    /* box-shadow: 0px 3.51045px 16.7422px #F8A12D; */
+
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    color: #01345C;
+}
+
+.filterDiv {
+    display: none; /* Hidden by default */
+  }
+  
+  /* The "show" class is added to the filtered elements */
+  .filterDiv.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+/* Expandable Search Box */
+
+.search_container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: #F8A12D;
+    position: relative;
+    transition: 0.5ms;
+    overflow: hidden;
+}
+
+.search_container .icon {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translate(-50%, -40%);
+    color: white;
+}
+
+
+.search_container .icon .search {
+    font-size: 21px;
+    cursor: pointer;
+
+}
+
+.search_container.active {
+    width: 480px;
+    background-color: #fcf9f5;
+    border: 3px solid #F8A12D;
+
+}
+
+.icon.active {
+    color: #01345C;
+}
+
+.search_container .input {
+    position: relative;
+    width: 170px;
+    height: 60px;
+    left: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search_container input{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 90%;
+    border: none;
+    outline: none;
+    background-color: #fcf9f5;
+}
+
+.search_container .input .clear {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translate(-40%,-60%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #01345C;
+}   
+
+/* ///////////////////////////////////// */
+
+
+.btncard {
+    display: flex;
+    color: white;
+    font-size: 10px;
+    text-decoration: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 7px;
+    gap: 4px;
+    width: 74px;
+    height: 18px;
+    background: #F8A12D;
+    box-shadow: 0px 1.62883px 7.76831px rgba(248, 161, 45, 0.5);
+    border-radius: 12.2162px;
+    cursor: pointer;
+}
+
+.btn-outline-card {
+    box-sizing: border-box;
+    color: #F8A12D;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 10px;
+    gap: 4px;
+    width: 74px;
+    height: 18px;
+    border: 1.43703px solid #F8A12D;
+    /* filter: drop-shadow(0px 1.62883px 7.76831px rgba(0, 0, 0, 0.3)); */
+    border-radius: 12.2162px;
+}
+
+.rulea {
+    width: 73px;
+    height: 4px;
+    background-color: #F8A12D;
+}
+
+.ruleb {
+    width: 73px;
+    height: 4px;
+    background: #08304F;
+}
+
+.hero-bubbles-1 {
+    position: absolute;
+    top: 70%;
+    left: 4%;
+}
+
+@media (max-width:768px) {
+    .hero-bubbles-1 {
+        position: absolute;
+        top: 80%;
+        left: 3%;
+    }
+}
