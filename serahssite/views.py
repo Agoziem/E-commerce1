@@ -5,6 +5,7 @@ from main.models import *
 from django.http import JsonResponse
 import json
 from main.utils import cookieCart, cartData, guestOrder
+from django.conf import settings
 review_photos=[]
 review_main_photos=[]
 home_photos=[]
@@ -28,11 +29,12 @@ def home_view(request):
     review_list=reviews[:6]
     for review in reviews:
         review_photos.append(review.imageURL)
-        review_main_photos=review_photos[:5]
+    review_main_photos=review_photos[:5]
     for book in books:
         home_photos.append(book.imageURL)
-        main_photos=home_photos[:4]
+    main_photos=home_photos[:4]
     context={
+        'mapbox_private_key':settings.MAPBOXGL_ACCESSTOKEN,
         "newestbook":newestbook,
         "features":features,
         "number1":number1,

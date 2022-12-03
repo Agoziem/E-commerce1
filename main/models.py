@@ -104,9 +104,9 @@ class ShippingAddress(models.Model):
 
 
 class General_Customer_review(models.Model):
-	image=models.ImageField(upload_to='media', blank=True)
+	image=models.ImageField(upload_to='media', blank=False,help_text = "upload your Face shot")
 	name=models.CharField(max_length=300, null=True)
-	comment=models.TextField( max_length=300, blank=True)
+	comment=models.TextField( max_length=40, blank=True,help_text = "not exceeding 40 words")
 	rating=models.DecimalField(max_digits=4, decimal_places=2)
 	date_reviewed = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 

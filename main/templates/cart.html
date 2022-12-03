@@ -57,7 +57,7 @@
                                 <p style="font-size: 13px; line-height:1.5em;">{{ item.product.short_description }}</p>
                             </div>
                             <div class="col col-md-3">
-                                <h5 style="text-decoration: line-through;">#{{ item.product.price}}</h5>
+                                <h5 style="text-decoration: line-through;">${{ item.product.price}}</h5>
                                 <div class="d-flex align-items-center">
                                     <h6 class="mb-0 me-2"># <span id="bookamount{{ item.product.id }}">{{ item.get_total }}</span></h6>
                                     <div class="p-1 fw-bold"

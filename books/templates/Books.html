@@ -24,10 +24,11 @@
                 <div class="h1 mt-4 mt-md-2" style="color:#F8A12D;">Trending Book <br>
                     <span class="Display_text" style="color: #181C35;">{{ newestbook.title}}</span>
                 </div>
-                <p class="Display_text1 mt-2 mb-4 px-2">“ Greater Opportunities are hidden in a Book”
+                <p class="Display_text1 mt-2 mb-4 px-2">{{ newestbook.sideline }}
                 </p>
+                <h1 style="margin-bottom: 0rem;text-decoration: line-through;"> ${{ newestbook.price }} </h1>
                 <div class="d-flex align-items-center">
-                    <p class="me-3"> Current Price </p>
+                    <p class="me-3"> Discount Price </p>
                     <h1 style="margin-bottom: 0rem;"> ${{ newestbook.main_Price }} </h1>
                 </div>
                 <div>
@@ -109,10 +110,10 @@
                                 <div class="stars-inner"></div>
                             </div>
                             {% if not book.rating %}
-                            <p class="number-rating" data-rating="0" data-id="{{ book.id }}">0
+                            <p class="number-rating ms-1" data-rating="0" data-id="{{ book.id }}">0
                             </p>
                             {% else %}
-                            <p class="number-rating" data-rating="{{ book.rating|floatformat:1 }}"
+                            <p class="number-rating ms-1" data-rating="{{ book.rating|floatformat:1 }}"
                                 data-id="{{ book.id }}">{{ book.rating|floatformat:1 }}
                             </p>
                             {% endif %}
@@ -134,8 +135,6 @@
         {% endfor %}
     </div>
 </section>
-
-
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">

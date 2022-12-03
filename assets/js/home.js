@@ -81,3 +81,6 @@ var close = document.getElementsByClassName("closebtn");
           setTimeout(function () { div.style.display = "none"; }, 600);
         }
       }
+
+
+

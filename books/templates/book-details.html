@@ -9,21 +9,25 @@
         <img src="{{ book.imageURL }}" alt="" class="img-fluid" style="width: 15vw; min-width: 97.64px;">
 
         <h2 class="mt-4 text-center text-md-start">{{ book.title }}</h2>
-        <p class="fw-bold text-center text-md-start">Mastering Basic Algorithms  in the Python Language</p>
+        <p class="fw-bold text-center text-md-start">{{ book.sideline }}</p>
+        <h4 class="mb-0" style="text-decoration: line-through;">${{ book.price }} </h4>
         <div class="d-flex py-2">
-            <p class="me-2"> Current Price</p>
-            <h4 class="mb-0">${{ book.main_Price }} </h4>
+            <p class="me-2"> Discount Price</p>
+            <h4 class="mb-0">${{ book.main_Price }}</h4>
         </div>
-        <div>
+
+        <!-- Book Ratings -->
+
+        <!-- <div>
             {% if not book.rating %}
             <p class="fw-bold text-center text-md-start" >0 Rating</p>
             {% else %}
             <p class="fw-bold text-center text-md-start" >Book Rating is {{ bookrating|floatformat:1 }}</p>
             {% endif %}
-        </div>
+        </div> -->
     </div>
     <div class="col-md-4 bg-light px-4 py-5" style="max-width: 441px;">
-        <h2> Short Description </h2>
+        <h2> Book Description </h2>
         <p style="text-transform: lowercase;">{{ book.long_description }}</p>
         <a class="btn px-4 me-2 my-3 update-cart"  data-action="add" data-product="{{ book.id }}" style="cursor: pointer;"> Add to Cart</a>
     </div>
@@ -46,9 +50,10 @@
                 </div>
            </div>
         </div>
-        <div class="col-md-5 d-flex flex-column align-items-center align-items-md-start  px-2 px-md-4" style="background-color: rgb(250, 245, 239);">
-            <div class="related_card d-flex flex-column align-items-center justify-content-center" style="height: 55vh;width: 100%; overflow-y: scroll;">
-                <h4  class="mt-3">Related Books</h4>
+        <div class="col-md-5  px-2 px-md-4" style="background-color: rgb(250, 245, 239);">
+            <h4  class="mt-3 text-center">Related Books</h4>
+            <div class="related_card d-flex flex-column align-items-center justify-content-center" style="height: 75vh;width: 100%; overflow-y: scroll;">
+                
                 {% for otherbook in related_books %}
                 <div class="card shadow-sm mb-3 p-3" style="width:20vw; min-width: 280px; background-color:#fff;border: none;font-size: 14px">
                     <div class="row justify-content-between align-items-center">
@@ -57,10 +62,10 @@
                         </div>
                         <div class="col-8">
                             <h5 class="mb-1 mb-md-2" style="font-size: 1.3em;">{{ otherbook.title }}</h5>
-                            <p class="mb-1 mb-md-2" style="font-size: .8em; line-height: 1.2em;">the Ultimate Guide to Coding with Python</p>
+                            <p class="mb-1 mb-md-2" style="font-size: .8em; line-height: 1.2em;">{{ otherbook.sideline }}</p>
                             <div class="d-flex mb-md-2">
                                 {% if not otherbook.rating %}
-                                <p>0 Rating</p>
+                                <p>No Ratings yet</p>
                                 {% else %}
                                 <p>{{ otherbook.rating|floatformat:1 }}</p>
                                 {% endif %}

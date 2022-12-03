@@ -10,7 +10,8 @@ class BookCategory(models.Model):
 class Book(models.Model):
     title=models.CharField(max_length= 300, blank=True)
     Author=models.CharField(max_length= 300, blank=True)
-    short_description=models.TextField(max_length=400, blank=True)
+    sideline=models.CharField(max_length=100, blank=True,help_text = "add a captivating highlight about your Book")
+    short_description=models.TextField(max_length=300, blank=True,help_text = "not exceeding 400 Words")
     long_description=models.TextField( blank=True)
     Ebookimage=models.ImageField(upload_to='media', blank=True)
     Ebook=models.FileField(upload_to='media', blank=True)
