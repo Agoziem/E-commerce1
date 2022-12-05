@@ -35,10 +35,10 @@ window.onscroll = function () { scrollFunction() };
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
-    navigationbar.classList.add('shadow-sm');
+    // navigationbar.classList.add('shadow-sm');
   } else {
     mybutton.style.display = "none";
-    navigationbar.classList.remove('shadow-sm');
+    // navigationbar.classList.remove('shadow-sm');
   }
 }
 
