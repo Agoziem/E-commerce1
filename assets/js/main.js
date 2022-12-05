@@ -51,7 +51,7 @@ function topFunction() {
 // Swipper .js 
 
 var swiper = new Swiper(".slider_content", {
-  slidesPerView: 3,
+
   spaceBetween: 25,
   slidesPerGroup: 3,
   loop: true,
@@ -80,8 +80,10 @@ var swiper = new Swiper(".slider_content", {
   },
 });
 
-
-
+AOS.init({
+  anchorPlacement: 'top-left',
+  duration: 1000
+});
 
 
 // Subscription form logic
@@ -154,29 +156,30 @@ function submitsubformdata2() {
 }
 
 var close = document.getElementsByClassName("closebtn");
-      var i;
-      for (i = 0; i < close.length; i++) {
-        close[i].onclick = function () {
-          var div = this.parentElement;
-          div.style.opacity = "0";
-          setTimeout(function () { div.style.display = "none"; }, 600);
-        }
-      }
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function () {
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function () { div.style.display = "none"; }, 600);
+  }
+}
 
 // Product Rating 
+
 var ratings = document.getElementsByClassName('number-rating');
 console.log(ratings)
 const starsTotal = 5;
 for (i = 0; i < ratings.length; i++) {
-    var rating = ratings[i].dataset.rating;
-    var ratingid = ratings[i].dataset.id;
-    document.addEventListener('DOMContentLoaded', getRatings(rating,ratingid));
-  }
+  var rating = ratings[i].dataset.rating;
+  var ratingid = ratings[i].dataset.id;
+  document.addEventListener('DOMContentLoaded', getRatings(rating, ratingid));
+}
 
 
-  function getRatings(rating,ratingid) {
-    const starPercentage = (rating/ starsTotal) * 100;
-    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
-    console.log(starPercentageRounded)
-    document.querySelector(`.rating${ratingid}z .stars-inner`).style.width = starPercentageRounded;
-  }
+function getRatings(rating, ratingid) {
+  const starPercentage = (rating / starsTotal) * 100;
+  const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+  console.log(starPercentageRounded)
+  document.querySelector(`.rating${ratingid}z .stars-inner`).style.width = starPercentageRounded;
+}

@@ -27,7 +27,7 @@
                                     <p>{{item.product.title}}</p>
                                 </div>
                                 <div style="flex:1">
-                                    <p>#{{ item.get_total }}</p>
+                                    <p>${{ item.get_total }}</p>
                                 </div>
                                 <div style="flex:1;margin-left: 20px;">
                                     <p>x{{item.quantity}}</p>
@@ -41,7 +41,7 @@
                             <h5><span style="color:#F8A12D;margin-left: 10px;"> Items:</span> {{order.get_cart_items}}
                             </h5>
                             <h5><span style="color:#F8A12D;margin-left: 10px;"> Total:</span>
-                                #{{order.get_cart_total|floatformat:2}}</h5>
+                                ${{order.get_cart_total|floatformat:2}}</h5>
                     </div>
                 </div>
 
