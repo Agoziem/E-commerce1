@@ -28,21 +28,23 @@
             </div>
         </div>
         <div class=" row justify-content-center px-2">
-            <div class=" col-md" >
+            <div class=" col-md">
                 <div class="Display_text mt-4 mt-md-2" data-aos="zoom-in">SERAH’S
                     <span style="color: #181C35;"> Inspirational Books </span>
                 </div>
-                <p class="Display_text1 mt-2 mb-4 px-2" data-aos="fade-in" data-aos-delay="300">the Worlds largest inspirational
+                <p class="Display_text1 mt-2 mb-4 px-2" data-aos="fade-in" data-aos-delay="300">the Worlds largest
+                    inspirational
                     Book Store
                 </p>
                 <div>
                     <div>
-                        <a href="{% url 'books:Books' %}" class="btn px-4 me-3 shadow-sm" data-aos="fade-in" data-aos-delay="500"> View Books</a>
+                        <a href="{% url 'books:Books' %}" class="btn px-4 me-3 shadow-sm" data-aos="fade-in"
+                            data-aos-delay="500"> View Books</a>
                     </div>
                 </div>
                 <div class="hero_endorse">
                     {% for image in review_main_photos %}
-                    <div id="hero{{ forloop.counter }}" class="hero_endorse_img" ><img src="{{ image }}" alt=""></div>
+                    <div id="hero{{ forloop.counter }}" class="hero_endorse_img"><img src="{{ image }}" alt=""></div>
                     {% endfor %}
                     <p class="mt-4" style="color:#0E446E;font-weight: 600;">Trusted by Readers across the Internet
                     </p>
@@ -121,7 +123,8 @@
                 </div>
                 <div class="mt-4">
                     <h2 data-aos="zoom-in" data-aos-delay="300">Miss Serah Nwafor</h1>
-                        <h6 class="lead" data-aos="zoom-in" data-aos-delay="500" >- A writer, Author and content creator</h6>
+                        <h6 class="lead" data-aos="zoom-in" data-aos-delay="500">- A writer, Author and content creator
+                        </h6>
                 </div>
             </div>
             <div class="col-md-5">
@@ -158,10 +161,12 @@
             <div class="col-md-5 d-flex justify-content-center">
                 <div>
                     <div>
-                        <img src="{{ newestbook.imageURL }}" alt="" class="mt-2" style="width: max(200px,15vw);" data-aos="fade-right" data-aos-delay="100">
+                        <img src="{{ newestbook.imageURL }}" alt="" class="mt-2" style="width: max(200px,15vw);"
+                            data-aos="fade-right" data-aos-delay="100">
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-center mt-5" data-aos="fade-right" data-aos-delay="400">
+                    <div class="d-flex align-items-center justify-content-center mt-5" data-aos="fade-right"
+                        data-aos-delay="400">
                         <h4 class="mx-2"> Amount</h4>
                         <h3 style="color: #F8A12D;">${{ newestbook.main_Price }}</h3>
                     </div>
@@ -243,41 +248,33 @@
     </div>
     <div class="row justify-content-center mt-5 align-items-center">
         <div class="col-md-4 d-flex justify-content-center">
-            <div class="d-flex flex-column align-items-center">
-                <div class="contact_address" style="font-weight: 500; color: #052640;">
-                    <div><i class="bi bi-person-fill h4 me-3"></i> Nwafor Sarah</div>
-                    <div><i class="bi bi-envelope-fill h4 me-3"></i>sarahinspirationalbooks@gmail.com</div>
-                    <div><i class="bi bi-telephone-fill h4 me-3"></i>+234 810 446 4848</div>
+            <div class="mt-4 d-flex flex-column align-items-center">
+                <div class="alert" id="contact_form_alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    your feedback have been taken, we will respond to you shortly
                 </div>
-                <div class="mt-4 d-flex flex-column align-items-center">
-                    <div class="alert" id="contact_form_alert">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        your feedback have been taken, we will respond to you shortly
+                <form action="#" id="contact_form" class="form" style="width: 280px;font-weight: 600; color: #052640;">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Name</label>
+                        <input type="text" name="Name" class="form-control" id="exampleFormControlInput1"
+                            placeholder="enter your name">
                     </div>
-                    <form action="#" id="contact_form" class="form"
-                        style="width: 280px;font-weight: 600; color: #052640;">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Name</label>
-                            <input type="text" name="Name" class="form-control" id="exampleFormControlInput1"
-                                placeholder="enter your name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
-                                placeholder="name@example.com">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1"
-                                rows="6"></textarea>
-                        </div>
-                        <button value="submit" type="submit" class="btn w-100 mt2 shadow-sm"> Send Message</button>
-                    </form>
-                </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                        <textarea class="form-control" name="message" id="exampleFormControlTextarea1"
+                            rows="6"></textarea>
+                    </div>
+                    <button value="submit" type="submit" class="btn w-100 mt2 shadow-sm"> Send Message</button>
+                </form>
             </div>
         </div>
         <div class="col-md-4 mt-4 mt-md-0 d-flex justify-content-center">
-            <div  id='map' style='width: 400px; height: 500px;' ></div>
+            <div id='map' style='width: 400px; height: 500px;'></div>
         </div>
     </div>
 </section>

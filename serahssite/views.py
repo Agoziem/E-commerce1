@@ -6,10 +6,13 @@ from django.http import JsonResponse
 import json
 from main.utils import cookieCart, cartData, guestOrder
 from django.conf import settings
+
+
 review_photos=[]
 review_main_photos=[]
 home_photos=[]
 main_photos=[]
+
 def home_view(request):
     data = cartData(request)
     order = data['order']

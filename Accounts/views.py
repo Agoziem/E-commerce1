@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from main.models import Customer
 
 def loginPage(request):
     if request.user.is_authenticated:
@@ -27,11 +28,14 @@ def registerPage(request):
         return redirect('home')
     else:
         form = CreateUserForm()
+
         if request.method == 'POST':
+            email =request.POST.get('email')
             form=CreateUserForm(request.POST)
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
+                print(user)
                 messages.success(request, 'Account was created for ' + user)
                 return redirect('Accounts:login') #Redirect Calls on the Url function directory
                 
