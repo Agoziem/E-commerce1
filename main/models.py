@@ -2,8 +2,6 @@ from email.policy import default
 from django.db import models
 from books.models import Book
 from django.contrib.auth.models import User
-
-
 import secrets
 
 class Customer(models.Model):
