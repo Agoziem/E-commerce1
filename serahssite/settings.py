@@ -182,7 +182,7 @@ PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY', default='')
 
 MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')
 
-if os.getcwd() == '/app':
-	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
-	SECURE_SSL_REDIRECT=True
+# if os.getcwd() == '/app':
+# 	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
+# 	SECURE_SSL_REDIRECT=True
 
