@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['127.0.0.1','sarahsapp.herokuapp.com','www.serahsinspirationalbooks.com','serahsinspirationalbooks.com']
+ALLOWED_HOSTS = ['127.0.0.1','www.serahsinspirationalbooks.com','serahsinspirationalbooks.com','web-production-9293.up.railway.app']
 
 
 # Application definition
