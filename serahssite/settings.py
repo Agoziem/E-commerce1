@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['127.0.0.1','www.serahsinspirationalbooks.com','serahsinspirati
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -161,7 +162,7 @@ AWS_S3_OBJECT_PARAMETERS={'CacheControl':'max-age=86400'}
 STATICFILES_STORAGE= 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE='serahssite.storages.MediaStore'
 
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
+# STATIC_ROOT=os.path.join(BASE_DIR,'static')
 AWS_LOCATION = 'static'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "assets"),]
 STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
@@ -187,3 +188,10 @@ MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')
 # 	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
 # 	SECURE_SSL_REDIRECT=True
 
+JAZZMIN_SETTINGS = {
+    "site_logo": "img/Sarah Logo icon.png",
+    "site_logo_classes": "img-circle",
+    "login_logo": None,
+    "copyright": "Sarahs Inspirational Books",
+    "show_ui_builder":True,
+}
