@@ -168,7 +168,6 @@ for (i = 0; i < close.length; i++) {
 // Product Rating 
 
 var ratings = document.getElementsByClassName('number-rating');
-console.log(ratings)
 const starsTotal = 5;
 for (i = 0; i < ratings.length; i++) {
   var rating = ratings[i].dataset.rating;

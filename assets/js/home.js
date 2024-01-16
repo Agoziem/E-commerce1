@@ -15,8 +15,13 @@ function updated1() {
 }
 
 function updated2() {
-    var secondcount = document.querySelector("#counter2");
-    var number2 = parseInt(secondcount.dataset.count);
+    const secondcount = document.querySelector("#counter2");
+    try {
+      var number2 = parseInt(secondcount.dataset.count);
+    } catch (error) {
+      console.log(error)
+      var number2 = 0;
+    }
     secondcount.innerHTML = ++upto2;
     if (upto2 === number2) {
         clearInterval(counts2);
