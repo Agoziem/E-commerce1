@@ -1,0 +1,6 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "python manage.py migrate --noinput && gunicorn serahssite.wsgi:application --bind 0.0.0.0:$PORT"

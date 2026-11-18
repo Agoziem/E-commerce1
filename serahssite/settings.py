@@ -28,6 +28,10 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1','www.serahsinspirationalbooks.com','serahsinspirationalbooks.com','web-production-9293.up.railway.app']
 
+railway_host = config('RAILWAY_PUBLIC_DOMAIN', default='')
+if railway_host and railway_host not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(railway_host)
+
 
 # Application definition
 
@@ -195,3 +199,4 @@ JAZZMIN_SETTINGS = {
     "copyright": "Sarahs Inspirational Books",
     "show_ui_builder":True,
 }
+
