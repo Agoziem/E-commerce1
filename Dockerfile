@@ -15,4 +15,5 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD python manage.py migrate --noinput && gunicorn serahssite.wsgi:application --bind 0.0.0.0:${PORT:-8000}
+# Shell form so Railway's PORT is expanded at runtime. Exec form leaves it literal.
+CMD /bin/sh -c "python manage.py migrate --noinput && exec gunicorn serahssite.wsgi:application --bind 0.0.0.0:${PORT:-8080}"

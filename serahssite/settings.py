@@ -112,7 +112,8 @@ DATABASES = {
         'USER': config('USER'),
         'PASSWORD': config('PASSWORD'),
         'HOST': config('HOST'),
-        'PORT': config('PORT'),
+        # Railway reserves PORT for the web process. The database port is separate.
+        'PORT': config('PORT', default='5432'),
     }
 }
 
