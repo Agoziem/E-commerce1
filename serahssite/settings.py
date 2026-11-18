@@ -121,6 +121,21 @@ import dj_database_url
 db_from_env=dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
+# psycopg2 2.9 passes a timedelta to Django 2.2's UTC check. timedelta(0) is
+# UTC, but Django only accepts the integer 0, so every query raises.
+import datetime
+from django.utils.timezone import utc
+import django.db.backends.postgresql.base as postgresql_base
+import django.db.backends.postgresql.utils as postgresql_utils
+
+def _utc_tzinfo_factory(offset):
+    if offset not in (0, datetime.timedelta(0)):
+        raise AssertionError("database connection isn't set to UTC")
+    return utc
+
+postgresql_utils.utc_tzinfo_factory = _utc_tzinfo_factory
+postgresql_base.utc_tzinfo_factory = _utc_tzinfo_factory
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
